@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title> </title>
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/m2Animation.css">
+    <style>
+        .box{width:100vw;height:100vh;position: relative;font-family: 'Raleway', Arial, sans-serif;overflow: hidden;background: black;}
+        .con{width:100vw;height:100vh;background: #cae4b6;position: absolute;left: 0;top: 0;font-family: 'Raleway', Arial, sans-serif;overflow: hidden;}
+        h1{font-size:60px;line-height:120px;font-family: 'Raleway', Arial, sans-serif;color:#c94e50;text-align: center;}
+        .con>a{width:160px;height:80px;font-size: 20px;line-height:80px;background: #c94e50;text-align: center;display: block;margin: 30px auto;color:white;}
+        .main{width:660px;height:300px;margin: 10px auto;}
+        ul{width:200px;height:300px;margin:10px;float: left;background: rgba(255,255,255,.3);border-radius: 10px;}
+        ul li{font-size: 12px;line-height:50px;padding:0 20px;}
+        ul a{display: block;;color:black;font-size: 25px;line-height:50px;height:50px;text-align: left;}
+        .mask{width:100vw;height:100vh;position: absolute;left: 0;top: 0;background: rgba(0,0,0,0.7);display: none;z-index: -1}
+        .demo{width:600px;height:300px;background: white;font-size: 30px;line-height:120px;color:#c94e50;position: absolute;left: 0;top: 0;}
+        p{width:100%;height:120px;line-height:120px;text-align: center;}
+        .mask a{width:120px;height:60px;line-height:60px;font-size: 20px; text-align: center;display: block;color:white;margin: 10px auto;background: #c94e50;font-weight: 300;}
+        .line{height:100vh;width:100px;position: absolute;right:-100px;top: 0;background: rgba(0,0,0,1)}
+        html .main .active{color:white;}
+        svg{width:600px;height:300px;position: absolute;left:50%;top: 50%;margin-left:-300px;margin-top:-150px;display: none;}
+        rect{width:594px;height:294px;stroke:white;stroke-width:3px;stroke-dasharray:1000;stroke-dashoffset:1000;fill:none;}
+        /*初始化ClassName*/
+        html .p1_mask,html .p2_mask,html .p3_mask{display: block;z-index: 1;}
+        html .p1_demo,html .p2_demo{left: 50%;top:50%;margin-left:-300px;margin-top:-150px;}
+        html .p3_demo{top:50%;margin-top:-150px;}
+        html .p4_demo{top:100%;left:50%;margin-left:-300px;}
+        html .p5_demo{top:-300px;left: 50%;margin-left:-300px;}
+        html .p5_page{transform: translateY(-30px)}
+        html .p6_demo{margin-top:-150px;left:-600px;top:50%;}
+        html .p6_demo2{margin-top:-150px;left:50%;margin-left:-300px;top:50%;}
+        html .p7_demo{transform:rotateZ(-25deg);transform-origin: -800px 150px;margin-top:-150px;left:50%;margin-left:-300px;top:50%;}
+        html .p7_page{transform:rotateZ(-20deg);transform-origin:-20px center}
+        html .p8_demo{top:50%;margin-top:-5px;left:50%;margin-left:-800px;width:600px;overflow: hidden;height:10px;}
+        html .p9_demo{top:-320px;left:50%;margin-left:-300px;}
+        html .p10_demo{margin-top:-300px;top:100%;left:50%;margin-left:-300px;transform-origin: center bottom;transform-style: preserve-3d;}
+        html .p10_mask{perspective: 400px;}
+        html .p11_rect{}
+    </style>
+    <script>
+        window.onload=function(){
+            function $$(id) {
+                return document.getElementById(id);
+            }
+            var oBtn=$$('open'),
+                oMain=$$('main'),
+                oMask=$$('mask'),
+                oClose=$$('close'),
+                oDemo=$$('demo'),
+                oLine=$$('line'),
+                oBox=$$('box'),
+                oCon=$$('con'),
+                oSvg=$$('svg'),
+                oRect=$$('rect'),
+                oPage=$$('page'),
+                aList=oMain.getElementsByTagName('a');
+            function hide(){
+                oMask.className='mask';
+            }
+            var arr=[
+                function Sandra(){
+                    oMask.className='p1_mask mask p1_mask_s1';
+                    oDemo.className='p1_demo demo p1_demo_s1';
+                },
+                function Sally(){
+                    oMask.className='p1_mask mask p1_mask_s1';
+                    oDemo.className='p2_demo demo p2_demo_s1';
+                },
+                function Dean(){
+                    oMask.className='p1_mask mask p3_mask_s1';
+                    oDemo.className='p3_demo demo p3_demo_s1';
+                    oLine.className='p3_line_s1 line';
+                    oCon.className='p3_con_s1 con';
+                },
+                function Susan(){
+                    oMask.className='p1_mask mask p1_mask_s1';
+                    oDemo.className='p4_demo demo p4_demo_s1';
+                    oCon.className='p4_con_s1 con';
+                    oBox.className='box p4_box_s1';
+                },
+                function Cathy(){
+                    oMask.className='p1_mask mask p1_mask_s1';
+                    oDemo.className='p5_demo demo p5_demo_s1';
+                    oPage.className='p5_page_s1 p5_page';
+                    oClose.className='p5_close_s1 p5_page';
+                },
+                function Val(){
+                    oMask.className='p1_mask mask p1_mask_s1';
+                    oDemo.className='p6_demo demo p6_demo_s1';
+                },
+                function Ricky(){
+                    oMask.className='p1_mask mask p1_mask_s1';
+                    oDemo.className='p7_demo demo p7_demo_s1' ;
+                    oPage.className='p7_page_s1 p7_page' ;
+                    
+                },
+                function Donna(){
+                    oMask.className='p1_mask mask p1_mask_s1';
+                    oDemo.className='p8_demo demo p8_demo_s1' ;
+                },
+                function Ken(){
+                    oMask.className='p1_mask mask p1_mask_s1';
+                    oDemo.className='p9_demo demo p9_demo_s1';
+                },
+                function Alex(){
+                    oMask.className='p1_mask mask p1_mask_s1 p10_mask';
+                    oDemo.className='p10_demo demo p10_demo_s1';
+                },
+                function Don(){
+                    oMask.className='p1_mask mask p1_mask_s1';
+                    oDemo.className='p1_demo demo p11_demo_s1';
+                },
+                function Wilma(){
+                    oMask.className='p1_mask mask p1_mask_s1';
+                    oRect.className='p11_rect_s1';
+                }
+                
+            ]    
+            var arr2=[
+                function Sandra_end(){
+                    oMask.className='p1_mask mask p1_mask_s2';
+                    oDemo.className='p1_demo demo p1_demo_s2';
+                    setTimeout(hide,600);
+                },
+                function Sally_end(){
+                    oMask.className='p1_mask mask p1_mask_s2';
+                    oDemo.className='p2_demo demo p2_demo_s2';
+                    setTimeout(hide,600);
+                },
+                function Dean_end(){
+                    oMask.className='p1_mask mask p3_mask_s2';
+                    oDemo.className='p3_demo demo p3_demo_s2';
+                    oLine.className='p3_line_s2 line';
+                    oCon.className='p3_con_s2 con';
+                    setTimeout(hide,600);
+                },
+                function Susan_end(){
+                    oCon.className='p4_con_s2 con';
+                    oMask.className='p1_mask mask p1_mask_s2';
+                    oBox.className='box p4_box_s2';
+                    oDemo.className='p4_demo demo p4_demo_s2';
+                    setTimeout(hide,600);
+                },
+                function Cathy_end(){
+                    oMask.className='p1_mask mask p1_mask_s2';
+                    oDemo.className='p5_demo demo p5_demo_s2';
+                    setTimeout(hide,600);
+                },
+                function Val_end(){
+                    oMask.className='p1_mask mask p1_mask_s2';
+                    oDemo.className='p6_demo2 demo p6_demo_s2';
+                    setTimeout(hide,600);
+                },
+                function Ricky_end(){
+                    oMask.className='p1_mask mask p1_mask_s2';
+                    oDemo.className='p7_demo demo p7_demo_s2' ;
+                    setTimeout(hide,600);
+                },
+                function Donna_end(){
+                    oMask.className='p1_mask mask p1_mask_s2';
+                    oDemo.className='p8_demo demo p8_demo_s2' ;
+                    setTimeout(hide,600);
+                },
+                function Ken_end(){
+                    oMask.className='p1_mask mask p1_mask_s2';
+                    oDemo.className='p9_demo demo p9_demo_s2';
+                    setTimeout(hide,600);
+                },
+                function Alex_end(){
+                    oMask.className='p1_mask mask p1_mask_s2 p10_mask';
+                    oDemo.className='p10_demo demo p10_demo_s2';
+                    setTimeout(hide,600);
+                },
+                 function Don_end(){
+                    oMask.className='p1_mask mask p1_mask_s2';
+                    oDemo.className='p1_demo demo p1_demo_s2';
+                    setTimeout(hide,600);
+                }
+                
+                
+                
+                
+                
+                
+                
+                
+            ]
+            for(var i=0;i<aList.length;i++){
+                aList[i].index=i;
+                aList[i].onclick=function(){
+                    for(var i=0;i<aList.length;i++){
+                        aList[i].className='';
+                    }
+                    this.className='active';
+                    oMask.className='mask';
+                    oDemo.className='demo';
+                    oCon.className='con';
+                    oLine.className='line';
+                    oBox.className='box';
+                    oPage.className='';
+                    oClose.className='';
+                }
+            }
+            
+            oBtn.onclick=function(){
+                for(var i=0;i<aList.length;i++){
+                    if(aList[i].className){arr[i]();}
+                }
+            }
+            oClose.onclick=function(){
+                for(var i=0;i<aList.length;i++){
+                    if(aList[i].className)arr2[i]();
+                }
+            }
+            
+            
+            
+            
+            
+            
+            
+}
+    </script>
+</head>
+<body>
+    <div class="box" id="box">
+        <div class="con" id="con">       
+            <h1>-Dialog Effects-</h1>
+            <a href="javascript:;" id="open">Open Dialog</a>
+                <div class="main clearfix" id="main">
+                    <ul>
+                       <li>Simple</li>
+                       <li><a class="active" href="javascript:;">Sandra</a></li>
+                       <li><a href="javascript:;">Sally</a></li>
+                       <li><a href="javascript:;">Dean</a></li>
+                       <li><a href="javascript:;">Susan</a></li>
+                    </ul>
+                    <ul>
+                        <li>Move/Slide</li>
+                        <li><a href="javascript:;">Cathy</a></li>
+                        <li><a href="javascript:;">Val</a></li>
+                        <li><a href="javascript:;">Ricky</a></li>
+                        <li><a href="javascript:;">Donna</a></li>
+                    </ul>
+                    <ul>
+                        <li>Sticky</li>
+                        <li><a href="javascript:;">Ken</a></li>
+                        <li><a href="javascript:;">Alex</a></li>
+                        <li><a href="javascript:;">Don</a></li>
+                    </ul>
+            </div>
+            <div class="mask" id="mask">
+                <div class="demo" id="demo">
+                    <p id="page">Hello ~Day</p>
+                    <a href="javascript:;" id="close">close</a>
+                </div>
+            </div>        
+            <svg id="svg">
+                <rect id="rect" x="3";y="3"></rect>
+            </svg>
+        </div>
+        <div class="line" id="line"></div>
+    </div>
+</body>
+</html>

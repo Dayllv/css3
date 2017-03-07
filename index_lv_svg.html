@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style/reset.css">
+    <link rel="stylesheet" href="style/m2Animation_svg.css">
+    <title> </title>
+    <style>
+        .box{width:100vw;height:100vh;position: relative;font-family: 'Raleway', Arial, sans-serif;overflow: hidden;background: black;}
+        .con{width:100vw;height:100vh;background: #cae4b6;position: absolute;left: 0;top: 0;font-family: 'Raleway', Arial, sans-serif;overflow: hidden;}
+        h1{font-size:60px;line-height:120px;font-family: 'Raleway', Arial, sans-serif;color:#c94e50;text-align: center;}
+        .con>a{width:160px;height:80px;font-size: 20px;line-height:80px;background: #c94e50;text-align: center;display: block;margin: 30px auto;color:white;}
+        .main{width:880px;height:300px;margin: 10px auto;}
+        ul{width:200px;height:300px;margin:10px;background: rgba(255,255,255,.3);border-radius: 10px;}
+        ul li{font-size: 12px;line-height:50px;padding:0 20px;}
+        ul a{display: block;;color:black;font-size: 25px;line-height:50px;height:50px;text-align: left;}
+        .mask{width:100vw;height:100vh;background: rgba(0,0,0,.7);position: absolute;left: 0;top: 0;z-index: -1;}
+        .mask_end{width:100vw;height:100vh;background: rgba(0,0,0,.7);position: absolute;left: 0;top: 0;}
+        
+        .demo_end,.demo{width:600px;height:300px;position: absolute;left: 50%;top: 50%;margin-top:-150px;margin-left:-300px;background: white;}
+        .demo{z-index: -1;opacity: 0;}
+        p{width:100%;height:120px;line-height:120px;text-align: center;font-size: 30px;}
+        .demo a,.demo_end a,.demo2 a,.demo2_end a{width:120px;height:60px;line-height:60px;font-size: 20px; text-align: center;display: block;color:white;margin: 10px auto;background: #c94e50;font-weight: 300;}
+        html .main .active{color:white;}
+        svg{width:600px;height:800px;position: absolute;left: 50%;top:50%;margin-top:-150px;margin-left:-300px;display: none;}
+        .page{transform: translateX(-60px)}
+        html .demo2{position: absolute;left: 50%;top:0;margin-left:-100px;background: white;z-index: 3;width:200px;height:200px;border-radius: 50%;}
+        html .demo2_end{position: absolute;left: 50%;top:0;margin-left:-100px;background: white;z-index: 3;width:200px;height:200px;border-radius: 50%;z-index: 3;}
+        
+    </style>
+    <script>
+        window.onload=function(){
+            function $$(id) {
+                return document.getElementById(id);
+            }
+            var oBtn=$$('open'),
+                oMain=$$('main'),
+                oMask=$$('mask'),
+                oClose=$$('close'),
+                oDemo=$$('demo'),
+                oBox=$$('box'),
+                oCon=$$('con'),
+                oRect=$$('rect'),
+                oSvg=$$('svg'),
+                oSvg=$$('svg'),
+                oEll=$$('ellipse'),
+                oPage=$$('page'),
+                aList=oMain.getElementsByTagName('a');
+            console.log(oSvg)
+            var arr=[
+                function Wilma(){
+                    oMask.className='mask mask_s1';
+                    oDemo.className='demo demo_s1';
+                    oPage.className='page page_s1';
+                    oClose.className='page page_s1';
+                    with(oSvg.style){
+                        display='block';
+                    }
+                    with(oRect.style){
+                        display="block";
+                        stroke='white';
+                        fill='none';
+                        width='596px';
+                        height='296px';
+                        strokeWidth='2';
+                        strokeDasharray='2000';
+                        strokeDashoffset='2000';
+                        animation='rect_s1 1s';
+                        animationFillMode='forwards';
+                    }
+                },
+                function Jamie(){
+                     oMask.className='mask mask_s1';
+                     oDemo.className='demo2 demo2_s1';
+                    with(oSvg.style){
+                        display='block';
+                        zIndex='2';
+                        marginLeft="-200px";
+                        top="0";
+                    }
+                     with(oRect.style){
+                         display='none';
+                     }
+                     with(oEll.style){
+                         position='absolute';
+                         transform='translateY(-200px)';
+                         cx="200" ;
+                         cy="200" ;
+                         rx="200" ;
+                         ry="200";
+                         fill='rgb(255,255,255)';
+                         animation='change 0.85s,change2 0.55s 0.75s';
+                         animationFillMode='forwards';
+                     }
+                    
+                }
+            ]
+            var arr2=[
+                function Wilma_end(){
+                    oMask.className='mask_s2 mask_end';
+                    oDemo.className='demo_s2 demo_end';
+                    oSvg.style='none';
+                    oRect.style='none';
+                    setTimeout(hide,1500)
+                },
+                function Jamie_end(){
+                    oMask.className='mask_s2 mask_end';
+                    oDemo.className='demo2_s3 demo2_end';
+                    with(oEll.style){
+                         zIndex='2';
+                         animation='change3 1s';
+                         animationFillMode='forwards';
+                     }
+                    setTimeout(function(){
+                       oSvg.style='none';
+                        oEll.style='none';
+                    },1000)
+                    setTimeout(hide,1500)
+                }
+            ]
+            oBtn.onclick=function(){
+                for(var i=0;i<aList.length;i++){
+                    if(aList[i].className){arr[i]();}
+                }
+            }
+            oClose.onclick=function(){
+                for(var i=0;i<aList.length;i++){
+                    if(aList[i].className)arr2[i]();
+                }
+            }
+            for(var i=0;i<aList.length;i++){
+                aList[i].index=i;
+                aList[i].onclick=function(){
+                    for(var i=0;i<aList.length;i++){
+                        aList[i].className='';
+                    }
+                    this.className='active';
+                    oMask.className='mask';
+                    oDemo.className='demo';
+                    oBox.className='box';
+                    oPage.className='';
+                    oClose.className='';
+                }
+            }
+            function hide(){
+                oMask.className='mask';
+                oDemo.className='demo';
+                oBox.className='box';
+                oPage.className='';
+                oClose.className='';
+                
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="box" id="box">
+        <div class="con" id="con">       
+            <h1>-Dialog Effects-</h1>
+            <a href="javascript:;" id="open">Open Dialog</a>
+            <div class="main clearfix" id="main">
+                <ul>
+                    <li>SVG</li>
+                    <li><a class="active" href="javascript:;">Wilma</a></li>
+                    <li><a href="javascript:;">Jamie</a></li>
+                    <li><a href="javascript:;">Henry</a></li>
+                    <li><a href="javascript:;">Jim</a></li>
+                    <li><a href="javascript:;">Laura</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mask" id="mask"></div>
+        <div class="demo" id="demo">
+            <p id="page">Hello ~Day</p>
+            <a href="javascript:;" id="close">close</a>
+        </div>
+        <svg id="svg">
+            <rect x='2' y='2' id="rect"></rect>
+            <ellipse style="display=none;" id="ellipse"></ellipse>
+        </svg>
+        
+    </div>
+</body>
+</html>
